@@ -11,12 +11,17 @@ MINICLOUD
 |
 |--/cloud
 |
+|--/datajsons
+|
 |--/node_modules
 |
 |--/public
 |   |
 |   |--/css
-|       |--styles.css
+|   |   |--styles.css
+|   |  
+|   |--/js
+|       |--script.js
 |
 |--/views
 |   |
