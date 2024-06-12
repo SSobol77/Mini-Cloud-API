@@ -28,7 +28,8 @@ MINICLOUD
 |   |--/partial
 |   |   |-menu.hbs
 |   |
-|   |--about.hbs
+|   |--config.hbs
+|   |--docs.hbs
 |   |--index.hbs
 |   |--upload.hbs
 |
@@ -40,15 +41,18 @@ MINICLOUD
 
 ```
 
-- `/cloud`: Directory for storing uploaded files.
+- `/cloud`: Storage directory for storing uploaded files.
 - `/node_modules`: Contains Node.js modules.
+- `/datajsons`: Directory for storing topics
 - `/public`: Static files (CSS, JS, images).
   - `/css/styles.css`: CSS styles.
+  - `/js/script.js`: Scripts.
 - `/views`: Handlebars templates for web pages.
   - `/partial/menu.hbs`: Menu template part.
-  - `about.hbs`: About page.
-  - `index.hbs`: Main page.
+  - `docs.hbs`: Documentation page.
+  - `index.hbs`: Storage page.
   - `upload.hbs`: File upload page.
+  - `config.hbs`: Configuration Storage and Upload.
 - `app.js`: Main server file.
 - `package.json` & `package-lock.json`: Project configurations and dependencies.
 - `readme.md`: Project description.
@@ -68,6 +72,6 @@ The server runs on port 3000 and is available locally for development and testin
 - **Handlebars:** For server-side page rendering.
 - **Bootstrap:** For styling the interface and ensuring responsiveness.
 - **Multer:** For handling files uploaded to the server.
-- **JSON:** For storing file data.
+- **JSON:** For storing file data and topics.
 
 This project provides a foundation for more complex content management systems or personal cloud solutions that support a broader range of features and a high level of customization.
