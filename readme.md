@@ -1,4 +1,4 @@
-<img src="https://github.com/SSobol77/Mini-Cloud/blob/main/public/css/logo.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" width="170" height="170">
+<img src="https://github.com/SSobol77/Mini-Cloud/blob/main/public/logo.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" width="170" height="170">
 
 # Mini-Cloud
 
