@@ -1,6 +1,4 @@
-# Mini_Cloud
-
-**Project Name:** MiniCloud
+# Mini-Cloud
 
 **Project Description:**
 MiniCloud is a lightweight web server for hosting and managing files. It is implemented using Node.js, with Express.js and the Handlebars template engine for rendering pages. Key functionalities include uploading, storing, downloading, and deleting files via a web interface.
