@@ -69,6 +69,14 @@ app.get("/", function (req, res) {
     });
 });
 
+// Docs page route
+app.get("/docs", function(request,response){
+    response.render("docs",{
+        title: "Mini Cloud Documentation",
+        description: "Description:  ",
+    });
+});
+
 // File download page route
 app.get("/upload", function (req, res) {
     res.render("upload", {
