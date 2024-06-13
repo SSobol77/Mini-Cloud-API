@@ -9,9 +9,17 @@ MiniCloud is a lightweight web server for hosting and managing files. It is impl
 ```
 MINICLOUD
 |
-|--/cloud
-|
+|--/cloud(storage)
+|   |-yourFile1.avi
+|   |-- ...
+|   
 |--/datajsons
+|   |-- your-video.json
+|   |-- your-audio.json
+|   |-- your-images.json
+|   |-- your-documents.json
+|   |-- your-other.json
+|   | -- ...
 |
 |--/node_modules
 |
