@@ -5,5 +5,19 @@
     "time": "9:00:22 PM",
     "date": "6/16/2024",
     "theme": "Debian-images"
+  },
+  {
+    "filename": "frbsd.png",
+    "size": 8169,
+    "time": "9:02:18 PM",
+    "date": "6/16/2024",
+    "theme": "FreeBSD-images"
+  },
+  {
+    "filename": "rh.png",
+    "size": 9842,
+    "time": "9:02:32 PM",
+    "date": "6/16/2024",
+    "theme": "RedHat-images"
   }
 ]
