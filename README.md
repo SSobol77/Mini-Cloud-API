@@ -22,28 +22,30 @@ MiniCloud is a lightweight web server for hosting and managing files. It is impl
 ```
 MINICLOUD
 |
-|--/cloud(storage)
-|   |-yourFile1.avi
-|   |-- ...
-|   
+|--/cloud
+|
 |--/datajsons
-|   |-- your-video.json
-|   |-- your-audio.json
-|   |-- your-images.json
-|   |-- your-documents.json
-|   |-- your-other.json
-|   | -- ...
+|   |
+|   |--newtopic1-typefile.json (newtopic - name create from user;  typefile = [ video, audio, images, documents, other])
+|   |--...
 |
 |--/node_modules
 |
 |--/public
 |   |
+|   |--favicon.ico    
+|   |--logo.png
+|   |
 |   |--/css
 |   |   |--styles.css
-|   |  
+|   |   |--styles1.css
+|   |
 |   |--/js
-|       |--script.js
-|
+|       |--script_config.js
+|       |--script_index.js
+|       |--script_upload.js
+|       |--scripts.js
+|       
 |--/views
 |   |
 |   |--/partial
@@ -58,26 +60,26 @@ MINICLOUD
 |--package-lock.json
 |--package.json
 |--readme.md
-|--filesData.json
+|--filesData.json (contains a list of downloaded files )
 
 ```
 
-- `/cloud`: Storage directory for storing uploaded files.
+- `/cloud`: Directory for storing uploaded files.
+- `/datajsons`: Directory for newtopic-typefile.json (newtopic - name create from user;  typefile = [ video, audio, images, documents, other])
 - `/node_modules`: Contains Node.js modules.
-- `/datajsons`: Directory for storing topics
 - `/public`: Static files (CSS, JS, images).
   - `/css/styles.css`: CSS styles.
-  - `/js/script.js`: Scripts.
 - `/views`: Handlebars templates for web pages.
   - `/partial/menu.hbs`: Menu template part.
-  - `docs.hbs`: Documentation page.
-  - `index.hbs`: Storage page.
+  - `docs.hbs`: documents "howto" page.
+  - `index.hbs`: Main page.
   - `upload.hbs`: File upload page.
-  - `config.hbs`: Configuration Storage and Upload.
+  - `config.hbs` : Generate New Topic 
 - `app.js`: Main server file.
 - `package.json` & `package-lock.json`: Project configurations and dependencies.
 - `readme.md`: Project description.
 - `filesData.json`: File containing data about uploaded files.
+
 
 **Key Features:**
 1. **File Upload:** Files are uploaded to the `/cloud` directory using multer and are saved under their original names.
