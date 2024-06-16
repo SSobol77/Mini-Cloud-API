@@ -8,66 +8,42 @@
     <title>Upload files - {{title}}</title>
 </head>
 <body>
-        <div class="container mt-4">
+    <div class="container mt-4">
         {{> menu}}
         <div class="text-center mb-4">
             <img src="logo.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" class="img-fluid rounded-circle" width="170" height="170">
-            <p> </p>
+            <p></p>
             <h3>Mini-Cloud Upload</h3>
         </div>
-    <div class="container mt-4">
-        <h4>Upload files</h4>
-        {{#if message}}
-            <div class="alert {{messageClass}}" role="alert">
-                {{message}}
-            </div>
-        {{/if}}
-        <div class="my-3">
-            <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="fileInput" class="form-label">Choose file to upload</label>
-                    <input type="file" class="form-control" id="fileInput" name="filedata" required>
+        <div class="container mt-4">
+            <h4>Upload files</h4>
+            {{#if message}}
+                <div class="alert {{messageClass}}" role="alert">
+                    {{message}}
                 </div>
-                <button type="submit" class="btn btn-primary">Upload</button>
-            </form>
-            <div class="progress mt-2" style="height: 20px;">
-                <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            {{/if}}
+            <div class="my-3">
+                <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="themeSelect" class="form-label">Select a Topic for the file:</label>
+                        <select class="form-control" id="themeSelect" name="theme" required>
+                            {{#each themes}}
+                                <option value="{{this.name}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fileInput" class="form-label">Choose file to upload</label>
+                        <input type="file" class="form-control" id="fileInput" name="filedata" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
+                <div class="progress mt-2" style="height: 20px;">
+                    <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
             </div>
         </div>
     </div>
-
-    <script>
-const form = document.getElementById('uploadForm');
-form.onsubmit = function(event) {
-    event.preventDefault();
-    const formData = new FormData(form);
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/upload', true);
-
-    xhr.upload.onprogress = function(e) {
-        if (e.lengthComputable) {
-            const percentComplete = Math.round((e.loaded / e.total) * 100);
-            const progressBar = document.getElementById('progressBar').firstElementChild; // Access the child div inside #progressBar
-            progressBar.style.width = percentComplete + '%';
-            progressBar.textContent = percentComplete + '%'; // Display the percentage inside the progress bar
-        }
-    };
-
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            // Reset the progress bar after a successful download
-            const progressBar = document.getElementById('progressBar').firstElementChild;
-            progressBar.style.width = '0%';
-            progressBar.textContent = '0%';
-            alert('File successfully uploaded');
-        } else {
-            alert('An error occurred while uploading the file');
-        }
-    };
-
-    xhr.send(formData);
-};
-</script>
-
+<script src="/js/script_upload.js"></script>
 </body>
 </html>

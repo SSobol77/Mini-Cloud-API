@@ -6,67 +6,56 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Mini Cloud - {{title}}</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> <!-- Connecting SweetAlert for beautiful notifications-->
 </head>
 <body>
     <div class="container mt-4">
-    {{> menu}}
-    <div class="text-center mb-4">
-        <img src="logo.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" class="img-fluid rounded-circle" width="170" height="170">
-        <p> </p>
-        <h3>Mini-Cloud storage</h3>
-    </div>
-    <div class="container mt-4">
-        &nbsp;
-        <h4>Files in the cloud storaged</h4>
-        <div>
-            {{description}}
+        {{> menu}}
+        <div class="text-center mb-4">
+            <img src="logo.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" class="img-fluid rounded-circle" width="170" height="170">
+            <h3>Mini-Cloud storage</h3>
         </div>
-        <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>File</th>
-            <th>Size</th>
-            <th>Time</th>
-            <th>Date</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each filesData}}
-        <tr>
-            <td>{{@index}}</td>
-            <td>{{filename}}</td>
-            <td>{{size}} bytes</td>
-            <td>{{time}}</td>
-            <td>{{date}}</td>
-            <td>
-                <!-- Download Button -->
-                <a href="/download/{{@index}}" class="btn btn-primary">Download</a>
-                <!-- Open Button (for demonstration purposes, this acts like a download in a new tab) -->
-                <a href="/open/{{filename}}" target="_blank" class="btn btn-success">Open</a>
-                <!-- Delete Button -->
-                <form action="/delete/{{@index}}" method="POST" style="display: inline;">
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-        {{else}}
-        <!-- Print 10 empty lines if there are no files -->
-        {{#times 10}}
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        {{/times}}
-        {{/each}}
-    </tbody>
-</table>
-
+        <div class="container mt-4">
+            <h4>Files in the cloud stored</h4>
+            <div>
+                {{description}}
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>File</th>
+                        <th>Size</th>
+                        <th>Time</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each filesData}}
+                    <tr id="file-{{@index}}">
+                        <td>{{@index}}</td>
+                        <td>{{filename}}</td>
+                        <td>{{size}} bytes</td>
+                        <td>{{time}}</td>
+                        <td>{{date}}</td>
+                        <td>
+                            <a href="/download/{{filename}}" class="btn btn-primary">Download</a>
+                            <a href="/open/{{filename}}" target="_blank" class="btn btn-success">Open</a>
+                            <form action="/delete/{{filename}}" method="POST" class="delete-form" style="display: inline;">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{else}}
+                    <tr>
+                        <td colspan="6">No files found.</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
     </div>
+<script src="/js/script_index.js"></script> 
 </body>
 </html>
