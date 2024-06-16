@@ -1,3 +1,4 @@
+// Script for Config page
 document.getElementById('themeForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const themeName = document.getElementById('themeName').value;
@@ -30,16 +31,15 @@ document.getElementById('themeForm').addEventListener('submit', function(event) 
 });
 
 function deleteTheme(themeName) {
-    fetch(`/delete-theme/${themeName}`, { method: 'POST' })
-    .then(response => response.json())
-    .then(data => {
-        if(data.success) {
-            window.location.reload(); // Reloading the page after successful deletion
-        } else {
-            alert('Error deleting theme');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    fetch(`/delete-theme/${themeName}`, {
+        method: 'POST'
+    }).then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              window.location.reload(); //Reloading the page after deletion
+          } else {
+              alert('Error deleting theme: ' + data.message);
+          }
+      })
+      .catch(error => console.error('Error:', error));
 }
