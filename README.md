@@ -1,6 +1,6 @@
 <img src="https://github.com/SSobol77/Mini-Cloud/blob/main/public/logo.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" width="170" height="170">
 
-# Mini-Cloud
+# Mini-Cloud API
 
 **Project Description:**
 MiniCloud is a lightweight web server for hosting and managing files. It is implemented using Node.js, with Express.js and the Handlebars template engine for rendering pages. Key functionalities include uploading, storing, downloading, and deleting files via a web interface.
