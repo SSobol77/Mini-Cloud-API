@@ -61,15 +61,14 @@ router.post('/delete/:filename', function(req, res) {
 // Route for downloading a file
 router.get('/download/:filename', function(req, res) {
     const filename = req.params.filename;
-    const filesData = loadFileData();
-    const file = filesData.find(file => file.filename === filename);
+    const filePath = path.join(__dirname, '..', 'cloud', filename);
 
-    if (file) {
-        const filePath = path.join(__dirname, '..', 'cloud', filename);
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+        if (err) {
+            return res.status(404).send('File not found');
+        }
         res.download(filePath);
-    } else {
-        res.status(404).send('File not found');
-    }
+    });
 });
 
 // Route for opening a file
@@ -77,12 +76,12 @@ router.get('/open/:filename', function(req, res) {
     const filename = req.params.filename;
     const filePath = path.join(__dirname, '..', 'cloud', filename);
 
-    res.sendFile(filePath, err => {
+    fs.access(filePath, fs.constants.F_OK, (err) => {
         if (err) {
-            res.status(404).send('File not found');
+            return res.status(404).send('File not found');
         }
+        res.sendFile(filePath);
     });
 });
 
 module.exports = router;
-
