@@ -1,9 +1,9 @@
-// Script for Config page
+// Script Config page
 document.getElementById('themeForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const themeName = document.getElementById('themeName').value;
     const themeType = document.getElementById('themeType').value;
-    fetch('/config', {
+    fetch('/api/themes', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -31,12 +31,12 @@ document.getElementById('themeForm').addEventListener('submit', function(event) 
 });
 
 function deleteTheme(themeName) {
-    fetch(`/delete-theme/${themeName}`, {
-        method: 'POST'
+    fetch(`/api/themes/${themeName}`, {
+        method: 'DELETE'
     }).then(response => response.json())
       .then(data => {
           if (data.success) {
-              window.location.reload(); //Reloading the page after deletion
+              window.location.reload(); // Reloading the page after deletion
           } else {
               alert('Error deleting theme: ' + data.message);
           }

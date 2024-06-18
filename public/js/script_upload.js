@@ -1,19 +1,22 @@
-// Script for Upload page
+// Script Upload page
 const form = document.getElementById('uploadForm');
 form.onsubmit = async function(event) {
     event.preventDefault();
     const formData = new FormData(form);
+    const progressBar = document.getElementById('progressBar');
+    progressBar.style.width = '0%';
+    progressBar.textContent = '0%';
+
     try {
-        const response = await fetch('/upload', {
+        const response = await fetch('/api/upload', {
             method: 'POST',
             body: formData
         });
         const result = await response.json();
-        const progressBar = document.getElementById('progressBar');
-        progressBar.style.width = '0%';
-        progressBar.textContent = '0%';
 
         if (response.ok) {
+            progressBar.style.width = '100%';
+            progressBar.textContent = '100%';
             alert('File successfully uploaded');
         } else {
             throw new Error(result.message || 'An error occurred while uploading the file');
@@ -35,7 +38,8 @@ form.addEventListener('change', () => {
         }
     }
 });
-//Function filtering type upload file
+
+// Function filtering type upload file
 function isValidFileType(fileName, fileType) {
     const extension = fileName.split('.').pop().toLowerCase();
     const mimeTypes = {

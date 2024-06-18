@@ -1,20 +1,14 @@
-// Script for Index page
+// Script Index page
 document.querySelectorAll('.delete-form').forEach(form => {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        const formData = new FormData(this);
+        const filename = this.getAttribute('action').split('/').pop();
         const row = this.closest('tr');
 
-        fetch(this.action, {
-            method: 'POST',
-            body: formData
+        fetch(`/api/delete/${filename}`, {
+            method: 'DELETE'
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network error when trying to delete a file');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             if (data.success) {
                 row.remove(); // Deleting a row from a table
@@ -29,4 +23,3 @@ document.querySelectorAll('.delete-form').forEach(form => {
         });
     });
 });
-
