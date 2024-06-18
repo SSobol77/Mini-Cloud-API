@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles1.css"> <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="/css/styles_docs.css"> <!-- Link to the external CSS file -->
     <title>{{title}}</title>
+
 </head>
 <body>
     <div class="container mt-4">
@@ -13,22 +14,605 @@
         <div class="text-center mb-4">
             <p>&nbsp;</p>
             <img src="logo.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" class="img-fluid rounded-circle" width="170" height="170">
-            <p> </p>
-            <h3>Mini-Cloud Documentation</h3>
+            <p></p>
+            <h3><strong>Mini-Cloud API Documentation</strong></h3>
         </div>
-       <h6>&nbsp;</h6>
-        &nbsp;
-        <div class="mt-4">
-           <h5>{{description}}</h5> 
+        <h6>&nbsp;</h6>
+        <div class="mt-6">
+            <h4><strong> Content:</strong></h4> 
         </div>
+        <h6>&nbsp;</h6>
         <div>
             <ol class="custom-list">
-                <li><a href="#what-is-mini-cloud" class="link-primary">What is Mini-Cloud?</a></li>
-                <li><a href="#configuration-mini-cloud" class="link-primary">Configuration Mini-Cloud</a></li>
-                <li><a href="#using-mini-cloud" class="link-primary">Using Mini-Cloud</a></li>
+                <li><a href="#learn-how-to" class="link-primary">Learn how to effectively use Mini Cloud API</a></li>
+                <li><a href="#introduction" class="link-primary">Introduction to Mini-Cloud API</a></li>
+                <li><a href="#installation" class="link-primary">Installation Instructions</a></li>
+                <li><a href="#api-usage" class="link-primary">API Usage Instructions</a></li>
+                <li><a href="#configuration" class="link-primary">Configuring Mini-Cloud API</a></li>
+                <li><a href="#usage" class="link-primary">Utilizing Mini-Cloud API</a></li>
+                <li><a href="#how-to" class="link-primary">How-To Guides</a></li>
+                <li><a href="#integration-examples" class="link-primary">Integration Examples</a></li>
+                <ul>
+                    <li><a href="#ci-cd-tools" class="link-primary">CI/CD Tools (Continuous Integration/Continuous Deployment)</a></li>
+                    <ul>
+                        <li><a href="#jenkins-integration" class="link-primary">Jenkins Integration</a></li>
+                        <li><a href="#gitlab-integration" class="link-primary">GitLab CI/CD Integration</a></li>
+                    </ul>
+                    <li><a href="#monitoring-alerting" class="link-primary">Monitoring and Alerting</a></li>
+                    <ul>
+                        <li><a href="#prometheus-integration" class="link-primary">Prometheus Integration (Python)</a></li>
+                        <li><a href="#nagios-integration" class="link-primary">Nagios Integration</a></li>
+                    </ul>
+                    <li><a href="#cloud-services" class="link-primary">Cloud Services</a></li>
+                    <ul>
+                        <li><a href="#aws-s3-sync" class="link-primary">AWS S3 Sync (Node.js)</a></li>
+                        <li><a href="#google-cloud-storage" class="link-primary">Google Cloud Storage Integration (Python)</a></li>
+                    </ul>
+                    <li><a href="#project-management-tools" class="link-primary">Project Management Tools</a></li>
+                    <ul>
+                        <li><a href="#jira-integration" class="link-primary">JIRA Integration</a></li>
+                        <li><a href="#trello-integration" class="link-primary">Trello Integration</a></li>
+                    </ul>
+                    <li><a href="#cms-tools" class="link-primary">Content Management Systems (CMS)</a></li>
+                    <ul>
+                        <li><a href="#wordpress-integration" class="link-primary">WordPress Integration</a></li>
+                        <li><a href="#drupal-integration" class="link-primary">Drupal Integration</a></li>
+                    </ul>
+                    <li><a href="#data-tools" class="link-primary">Data Tools</a></li>
+                    <ul>
+                        <li><a href="#jupyter-integration" class="link-primary">Jupyter Notebook Integration (Python)</a></li>
+                        <li><a href="#kafka-integration" class="link-primary">Apache Kafka Integration</a></li>
+                    </ul>
+                    <li><a href="#automation-tools" class="link-primary">Automation Tools</a></li>
+                    <ul>
+                        <li><a href="#ansible-integration" class="link-primary">Ansible Integration</a></li>
+                        <li><a href="#terraform-integration" class="link-primary">Terraform Integration</a></li>
+                    </ul>
+                </ul>
             </ol>
         </div>
+        <h3>&nbsp;</h3>                     
+        <div id="learn-how-to" class="mt-4">
+            <h4><strong>Learn how to effectively use Mini Cloud API</strong></h4>
+            <p>Mini-Cloud is a lightweight web server designed to host and manage files. It provides functionalities for uploading, storing, downloading, and deleting files through a user-friendly web interface. Users can organize their files into themes, making file management more intuitive and efficient.</p>
+            <p>Key features of Mini-Cloud include:</p>
+            <ul>
+                <li><strong>File Upload:</strong> Upload files through an easy-to-use web interface.</li>
+                <li><strong>File Storage:</strong> Store files securely on the server.</li>
+                <li><strong>File Download:</strong> Download files when needed.</li>
+                <li><strong>File Deletion:</strong> Delete files that are no longer needed.</li>
+                <li><strong>Theme Management:</strong> Organize files into user-defined themes for better management.</li>
+            </ul>
+            <p>Mini-Cloud is implemented using Node.js, with Express.js for the server and Handlebars for rendering pages. This makes it a flexible and scalable solution for small to medium-sized file hosting needs.</p>
+        </div>
+        <div id="introduction" class="mt-4">
+            <h4><strong>Introduction to Mini-Cloud API</strong></h4>
+            <p>Mini-Cloud is a lightweight web server designed to host and manage files. It provides functionalities for uploading, storing, downloading, and deleting files through a user-friendly web interface. Users can organize their files into themes, making file management more intuitive and efficient.</p>
+            <p>Key features of Mini-Cloud include:</p>
+            <ul>
+                <li><strong>File Upload:</strong> Upload files through an easy-to-use web interface.</li>
+                <li><strong>File Storage:</strong> Store files securely on the server.</li>
+                <li><strong>File Download:</strong> Download files when needed.</li>
+                <li><strong>File Deletion:</strong> Delete files that are no longer needed.</li>
+                <li><strong>Theme Management:</strong> Organize files into user-defined themes for better management.</li>
+            </ul>
+            <p>Mini-Cloud is implemented using Node.js, with Express.js for the server and Handlebars for rendering pages. This makes it a flexible and scalable solution for small to medium-sized file hosting needs.</p>
+        </div>
+        <div id="installation" class="mt-4">
+            <h4><strong>Installation Instructions</strong></h4>
+            <p>To install and set up Mini-Cloud API, follow these steps:</p>
+            <p><strong>Prerequisites:</strong></p>
+            <ul>
+                <li>Ensure you have Node.js and npm installed on your system.</li>
+            </ul>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Clone the repository from GitHub:
+                    <pre><code>git clone https://github.com/your-repo/MiniCloud.git</code></pre>
+                </li>
+                <li>Navigate to the project directory:
+                    <pre><code>cd MiniCloud</code></pre>
+                </li>
+                <li>Install the dependencies:
+                    <pre><code>npm install</code></pre>
+                </li>
+                <li>Start the server:
+                    <pre><code>npm start</code></pre>
+                </li>
+                <li>Open your browser and go to <a href="http://localhost:3000">http://localhost:3000</a> to access Mini-Cloud.</li>
+            </ol>
+            <p>After completing these steps, Mini-Cloud will be up and running on your local machine.</p>
+        </div>
+        
+        <div id="api-usage" class="mt-4">
+            <h4><strong>API Usage Instructions</strong></h4>
+            <p>The Mini-Cloud API allows you to manage files and themes programmatically. Below are the key endpoints and their usage:</p>
+            <p><strong>Get List of Files</strong></p>
+            <pre><code class="http-method">GET</code> /api/files</pre>
+            <p>Retrieves a list of all files stored in the cloud.</p>
+            <p><strong>Upload File</strong></p>
+            <pre><code class="http-method">POST</code> /api/upload</pre>
+            <p>Uploads a new file to the cloud.</p>
+            <p><strong>Request Parameters:</strong></p>
+            <ul>
+                <li><code>filedata</code> (form-data): The file to be uploaded.</li>
+                <li><code>theme</code> (form-data): The theme under which the file should be categorized.</li>
+            </ul>
+            <p><strong>Download File</strong></p>
+            <pre><code class="http-method">GET</code> /api/download/:filename</pre>
+            <p>Downloads the specified file.</p>
+            <p><strong>Delete File</strong></p>
+            <pre><code class="http-method">DELETE</code> /api/delete/:filename</pre>
+            <p>Deletes the specified file.</p>
+            <p><strong>Get List of Themes</strong></p>
+            <pre><code class="http-method">GET</code> /api/themes</pre>
+            <p>Retrieves a list of all themes.</p>
+            <p><strong>Create New Theme</strong></p>
+            <pre><code class="http-method">POST</code> /api/themes</pre>
+            <p>Creates a new theme.</p>
+            <p><strong>Request Parameters:</strong></p>
+            <ul>
+                <li><code>themeName</code> (JSON): The name of the new theme.</li>
+                <li><code>themeType</code> (JSON): The type of the theme (e.g., video, audio, documents, images, other).</li>
+            </ul>
+            <p><strong>Delete Theme</strong></p>
+            <pre><code class="http-method">DELETE</code> /api/themes/:themeName</pre>
+            <p>Deletes the specified theme.</p>
+        </div>
 
+        <div id="configuration" class="mt-4">
+            <h4><strong>Configuring Mini-Cloud API</strong></h4>
+            <p>Configuring Mini-Cloud involves setting up and managing themes to categorize your files efficiently. Themes are a powerful feature that allows you to group files based on their types or any other criteria you choose. Here's how you can configure themes in Mini-Cloud:</p>
+            <p><strong>Creating a New Theme:</strong></p>
+            <ul>
+                <li>Navigate to the Configuration page.</li>
+                <li>Enter a unique name for the new theme. The name should be descriptive and relevant to the type of files it will contain.</li>
+                <li>Select the type of files the theme will handle (e.g., video, audio, documents, images, other).</li>
+                <li>Click the "Create Theme" button to add the new theme.</li>
+            </ul>
+            <p><strong>Managing Existing Themes:</strong></p>
+            <ul>
+                <li>On the Configuration page, you will see a list of existing themes.</li>
+                <li>Each theme can be deleted by clicking the "Delete" button next to its name. Deleting a theme will remove it from the system, but it will not delete the files associated with it.</li>
+            </ul>
+            <p>Using themes helps keep your files organized and makes it easier to manage them within the Mini-Cloud system. Themes can be tailored to suit your specific needs, providing a flexible and scalable solution for file organization.</p>
+        </div>
+
+        <div id="usage" class="mt-4">
+            <h4><strong>Utilizing Mini-Cloud API</strong></h4>
+            <p>Using Mini-Cloud is straightforward and user-friendly. Here are the key steps to effectively utilize Mini-Cloud:</p>
+            <p><strong>Uploading Files:</strong></p>
+            <ul>
+                <li>Navigate to the Upload page.</li>
+                <li>Select the theme under which you want to categorize the file.</li>
+                <li>Choose the file you want to upload from your local system.</li>
+                <li>Click the "Upload" button to upload the file to the server.</li>
+            </ul>
+            <p><strong>Downloading Files:</strong></p>
+            <ul>
+                <li>Go to the Storage page where all uploaded files are listed.</li>
+                <li>Find the file you want to download and click the "Download" button next to it.</li>
+            </ul>
+            <p><strong>Deleting Files:</strong></p>
+            <ul>
+                <li>On the Storage page, locate the file you wish to delete.</li>
+                <li>Click the "Delete" button next to the file. Confirm the deletion if prompted.</li>
+            </ul>
+            <p>Mini-Cloud's user interface is designed to be intuitive, making it easy for users to manage their files without any hassle. Whether you are uploading, downloading, or deleting files, the process is simple and efficient.</p>
+        </div>
+
+        <div id="how-to" class="mt-4">
+            <h4><strong>How-To Guides</strong></h4>
+            <p>Our How-To Guides provide step-by-step instructions on performing various tasks within Mini-Cloud. Whether you are uploading your first file or configuring complex themes, these guides will help you get the most out of Mini-Cloud.</p>
+            <p><strong>How to Upload Files:</strong></p>
+            <ul>
+                <li>Navigate to the Upload page.</li>
+                <li>Select the theme under which you want to categorize the file.</li>
+                <li>Choose the file you want to upload from your local system.</li>
+                <li>Click the "Upload" button to upload the file to the server.</li>
+                <li>Wait for the upload to complete and check for the confirmation message.</li>
+            </ul>
+            <p><strong>How to Download Files:</strong></p>
+            <ul>
+                <li>Go to the Storage page where all uploaded files are listed.</li>
+                <li>Find the file you want to download and click the "Download" button next to it.</li>
+            </ul>
+            <p><strong>How to Delete Files:</strong></p>
+            <ul>
+                <li>On the Storage page, locate the file you wish to delete.</li>
+                <li>Click the "Delete" button next to the file. Confirm the deletion if prompted.</li>
+            </ul>
+            <p>These guides ensure you can utilize all the features of Mini-Cloud effectively, allowing you to manage your files with ease.</p>
+        </div>
+
+        <div id="integration-examples" class="mt-4">
+            <h4><strong>Integration Examples</strong></h4>
+            <p>Here are some examples of how to integrate Mini-Cloud API with professional programs:</p>
+            <h6>&nbsp;</h6>
+            <h4 class="integration-tool" id="ci-cd-tools"><strong>CI/CD Tools (Continuous Integration/Continuous Deployment):</strong></h4>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="jenkins-integration">Jenkins Integration</h6>
+            <pre><code>
+pipeline {
+    agent any
+
+    stages {
+        stage('Upload Artifact') {
+            steps {
+                script {
+                    def response = httpRequest(
+                        httpMode: 'POST',
+                        url: 'http://localhost:3000/api/upload',
+                        formData: [
+                            filedata: file('path/to/artifact.zip'),
+                            theme: 'artifacts'
+                        ]
+                    )
+                    echo "Response: ${response}"
+                }
+            }
+        }
+    }
+}
+            </code></pre>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="gitlab-integration">GitLab CI/CD Integration</h6>
+            <pre><code>
+stages:
+  - upload
+
+upload_artifact:
+  stage: upload
+  script:
+    - curl -X POST -F "filedata=@path/to/artifact.zip" -F "theme=artifacts" http://localhost:3000/api/upload
+            </code></pre>
+            <h4>&nbsp;</h4>
+            <h4 class="integration-tool" id="monitoring-alerting"><strong>Monitoring and Alerting:</strong></h4>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="prometheus-integration">Prometheus Integration (Python)</h6>
+            <pre><code>
+import requests
+
+# Get list of files
+response = requests.get('http://localhost:3000/api/files')
+files = response.json()
+print(files)
+
+# Upload a file
+files = {'filedata': open('path/to/your/file.txt', 'rb')}
+data = {'theme': 'documents'}
+response = requests.post('http://localhost:3000/api/upload', files=files, data=data)
+print(response.json())
+
+# Download a file
+response = requests.get('http://localhost:3000/api/download/file.txt')
+with open('downloaded_file.txt', 'wb') as f:
+    f.write(response.content)
+
+# Delete a file
+response = requests.delete('http://localhost:3000/api/delete/file.txt')
+print(response.json())
+            </code></pre>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="nagios-integration">Nagios Integration</h6>
+            <pre><code>
+# Command definition for Nagios to check file existence
+define command {
+    command_name    check_file_exists
+    command_line    /usr/lib/nagios/plugins/check_file_exists.sh $ARG1$
+}
+
+# Script: /usr/lib/nagios/plugins/check_file_exists.sh
+#!/bin/bash
+if [ -f "$1" ]; then
+    echo "File $1 exists."
+    exit 0
+else
+    echo "File $1 does not exist."
+    exit 2
+fi
+            </code></pre>
+            <h4>&nbsp;</h4>
+            <h4 class="integration-tool" id="cloud-services"><strong>Cloud Services:</strong></h4>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="aws-s3-sync">AWS S3 Sync (Node.js)</h6>
+            <pre><code>
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3();
+const axios = require('axios');
+const fs = require('fs');
+
+// Download file from Mini-Cloud
+axios.get('http://localhost:3000/api/download/file.txt', { responseType: 'stream' })
+  .then(response => {
+    const filePath = 'file.txt';
+    const writer = fs.createWriteStream(filePath);
+
+    response.data.pipe(writer);
+
+    writer.on('finish', () => {
+      // Upload to S3
+      s3.upload({
+        Bucket: 'your-s3-bucket',
+        Key: 'file.txt',
+        Body: fs.createReadStream(filePath)
+      }, (err, data) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(`File uploaded successfully at ${data.Location}`);
+        }
+      });
+    });
+
+    writer.on('error', error => console.error(error));
+  })
+  .catch(error => console.error(error));
+            </code></pre>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="google-cloud-storage">Google Cloud Storage Integration (Python)</h6>
+            <pre><code>
+from google.cloud import storage
+import requests
+
+# Initialize a client
+storage_client = storage.Client()
+
+# Create a bucket object
+bucket_name = 'your-gcs-bucket'
+bucket = storage_client.bucket(bucket_name)
+
+# Download file from Mini-Cloud
+response = requests.get('http://localhost:3000/api/download/file.txt')
+with open('file.txt', 'wb') as file:
+    file.write(response.content)
+
+# Upload the file to GCS
+blob = bucket.blob('file.txt')
+blob.upload_from_filename('file.txt')
+
+print(f'File uploaded to {bucket_name}.')
+            </code></pre>
+            <h4>&nbsp;</h4>
+            <h4 class="integration-tool" id="project-management-tools"><strong>Project Management Tools:</strong></h4>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="jira-integration">JIRA Integration</h6>
+            <pre><code>
+const axios = require('axios');
+const FormData = require('form-data');
+const fs = require('fs');
+
+const form = new FormData();
+form.append('filedata', fs.createReadStream('path/to/attachment.zip'));
+form.append('theme', 'attachments');
+
+axios.post('http://localhost:3000/api/upload', form, {
+  headers: form.getHeaders()
+})
+  .then(response => {
+    const attachmentUrl = response.data.url;
+    const jiraUrl = 'https://your-jira-instance.atlassian.net';
+    const issueId = 'PROJECT-123';
+    const auth = {
+      username: 'your-email@example.com',
+      password: 'your-api-token'
+    };
+
+    axios.post(`${jiraUrl}/rest/api/3/issue/${issueId}/attachments`, {
+      headers: {
+        'Authorization': `Basic ${Buffer.from(`${auth.username}:${auth.password}`).toString('base64')}`,
+        'X-Atlassian-Token': 'no-check'
+      },
+      body: fs.createReadStream(attachmentUrl)
+    })
+      .then(res => console.log('Attachment added to JIRA issue:', res.data))
+      .catch(err => console.error('Error adding attachment to JIRA issue:', err));
+  })
+  .catch(err => console.error('Error uploading file to Mini-Cloud:', err));
+            </code></pre>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="trello-integration">Trello Integration</h6>
+            <pre><code>
+import requests
+
+# Trello API details
+api_key = 'your-api-key'
+api_token = 'your-api-token'
+board_id = 'your-board-id'
+
+# File upload details
+theme = 'attachments'
+file_path = 'path/to/attachment.zip'
+
+# Upload file to Mini-Cloud
+with open(file_path, 'rb') as file:
+    response = requests.post(
+        'http://localhost:3000/api/upload',
+        files={'filedata': file},
+        data={'theme': theme}
+    )
+    response.raise_for_status()
+
+file_url = response.json()['url']
+
+# Add attachment to Trello card
+card_id = 'your-card-id'
+attachment_url = f'https://api.trello.com/1/cards/{card_id}/attachments'
+params = {
+    'key': api_key,
+    'token': api_token,
+    'url': file_url
+}
+response = requests.post(attachment_url, params=params)
+response.raise_for_status()
+
+print('Attachment added to Trello card.')
+            </code></pre>
+            <h4>&nbsp;</h4>
+            <h4 class="integration-tool" id="cms-tools"><strong>Content Management Systems (CMS):</strong></h4>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="wordpress-integration">WordPress Integration</h6>
+            <pre><code>
+function upload_to_minicloud($file_path, $theme) {
+    $url = 'http://localhost:3000/api/upload';
+    $file_data = array('filedata' => new CURLFile($file_path), 'theme' => $theme);
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $file_data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return json_decode($response, true);
+}
+
+$file_path = 'path/to/your/file.jpg';
+$theme = 'images';
+$response = upload_to_minicloud($file_path, $theme);
+echo 'File uploaded: ' . $response['url'];
+            </code></pre>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="drupal-integration">Drupal Integration</h6>
+            <pre><code>
+function upload_to_minicloud($file_path, $theme) {
+    $url = 'http://localhost:3000/api/upload';
+    $file_data = array('filedata' => new CURLFile($file_path), 'theme' => $theme);
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $file_data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return json_decode($response, true);
+}
+
+$file_path = 'path/to/your/file.jpg';
+$theme = 'images';
+$response = upload_to_minicloud($file_path, $theme);
+echo 'File uploaded: ' . $response['url'];
+            </code></pre>
+            <h4>&nbsp;</h4>
+            <h4 class="integration-tool" id="data-tools"><strong>Data Tools:</strong></h4>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="jupyter-integration">Jupyter Notebook Integration (Python)</h6>
+            <pre><code>
+import requests
+
+# Upload a file to Mini-Cloud
+file_path = 'path/to/your/dataset.csv'
+theme = 'datasets'
+
+with open(file_path, 'rb') as file:
+    response = requests.post(
+        'http://localhost:3000/api/upload',
+        files={'filedata': file},
+        data={'theme': theme}
+    )
+    response.raise_for_status()
+
+print('File uploaded:', response.json()['url'])
+
+# Download a file from Mini-Cloud
+response = requests.get('http://localhost:3000/api/download/dataset.csv')
+with open('downloaded_dataset.csv', 'wb') as file:
+    file.write(response.content)
+
+print('File downloaded')
+            </code></pre>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="kafka-integration">Apache Kafka Integration</h6>
+            <pre><code>
+from kafka import KafkaProducer
+import requests
+
+# Kafka producer configuration
+producer = KafkaProducer(bootstrap_servers='localhost:9092')
+
+# Upload a log file to Mini-Cloud
+log_file_path = 'path/to/your/logfile.log'
+theme = 'logs'
+
+with open(log_file_path, 'rb') as file:
+    response = requests.post(
+        'http://localhost:3000/api/upload',
+        files={'filedata': file},
+        data={'theme': theme}
+    )
+    response.raise_for_status()
+
+log_url = response.json()['url']
+print('Log file uploaded:', log_url)
+
+# Send the log URL to Kafka
+producer.send('logs_topic', log_url.encode('utf-8'))
+producer.flush()
+
+print('Log URL sent to Kafka')
+            </code></pre>
+            <h4>&nbsp;</h4>
+            <h4 class="integration-tool" id="automation-tools">Automation Tools:</h4>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="ansible-integration">Ansible Integration</h6>
+            <pre><code>
+---
+- name: Integrate Mini-Cloud API with Ansible
+  hosts: localhost
+  tasks:
+    - name: Download configuration file from Mini-Cloud
+      get_url:
+        url: http://localhost:3000/api/download/config.yaml
+        dest: /path/to/destination/config.yaml
+
+    - name: Upload configuration file to Mini-Cloud
+      uri:
+        url: http://localhost:3000/api/upload
+        method: POST
+        headers:
+          Content-Type: multipart/form-data
+        body_format: form-multipart
+        body:
+          filedata: "{ lookup('file', '/path/to/source/config.yaml') }"
+          theme: "configurations"
+            </code></pre>
+            <h6>&nbsp;</h6>
+            <h6 class="integration-tool" id="terraform-integration">Terraform Integration</h6>
+            <pre><code>
+provider "http" {}
+
+data "http" "download_config" {
+  url = "http://localhost:3000/api/download/config.yaml"
+}
+
+resource "local_file" "config" {
+  content  = data.http.download_config.response_body
+  filename = "/path/to/destination/config.yaml"
+}
+
+resource "null_resource" "upload_state" {
+  provisioner "local-exec" {
+    command = <<EOT
+      curl -X POST -F "filedata=@/path/to/source/terraform.tfstate" -F "theme=configurations" http://localhost:3000/api/upload
+    EOT
+  }
+}
+            </code></pre>
+            <h6>&nbsp;</h6>
+            <h6>&nbsp;</h6>
+            <h6>&nbsp;</h6>
+        </div>
     </div>
+    <div class="back-to-top" id="back-to-top"></div>
+    <script>
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
