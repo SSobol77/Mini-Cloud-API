@@ -38,13 +38,20 @@ MINICLOUD
 |   |
 |   |--/css
 |   |   |--styles.css
-|   |   |--styles1.css
+|   |   |--styles_docs.css
 |   |
 |   |--/js
 |       |--script_config.js
 |       |--script_index.js
 |       |--script_upload.js
 |       |--scripts.js
+|
+|--/routes
+|   |--api.js
+|   |--config.js
+|   |--docs.js
+|   |--storage.js
+|   |--upload.js
 |       
 |--/views
 |   |
