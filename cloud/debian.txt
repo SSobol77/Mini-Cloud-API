@@ -1,0 +1,18 @@
+New Debian Developers and Maintainers (March and April 2024)
+On Fri 31 May 2024 with tags project
+Written by Jean-Pierre Giraud
+
+Translations: ar ca es fr hi-IN pl pt sv vi zh-CN
+The following contributors got their Debian Developer accounts in the last two months:
+
+Patrick Winnertz (winnie)
+Fabian Gruenbichler (fabiang)
+The following contributors were added as Debian Maintainers in the last two months:
+
+Juri Grabowski
+Tobias Heider
+Jean Charles Delépine
+Guilherme Puida Moreira
+Antoine Le Gonidec
+Arthur Barbosa Diniz
+Congratulations!
