@@ -1,0 +1,22 @@
+.success-message {
+    color: green;
+}
+
+.error-message {
+    color: red;
+}
+
+#progressBar {
+    width: 200px; /* Progress bar width */
+    height: 15px;
+    background-color: #ccc;
+    position: relative;
+    overflow: hidden;
+}
+
+#progressBar div {
+    height: 100%;
+    background-color: #6095f8;
+    width: 0%; /* Initial state without padding */
+    position: absolute;
+}

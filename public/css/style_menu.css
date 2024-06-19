@@ -1,0 +1,137 @@
+/* styles for menu.hbs */
+.navbar-nav .nav-link {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: -100%;
+    background-color: #007bff;
+    transition: left 0.3s;
+}
+
+.navbar-nav .nav-link:hover::after {
+    left: 0;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #007bff;
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    margin-right: 10px;
+}
+
+@media (max-width: 992px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .navbar-nav .nav-link {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+/* styles for docs */
+.custom-list {
+    list-style: none; /* Removing the standard list markers */
+    padding-left: 0; /* Removing the indentation on the left */
+}
+
+.custom-list li {
+    color: green; /* Set text color to green */
+    font-size: 20px; /* Set font size to 12 pixels */
+    text-decoration: none; /* Remove underline */
+}
+
+.custom-list li::before {
+    content: "-> "; /* Add an arrow in front of the text of each item */
+    color: #7700d8; /* The color of the arrows */
+    padding-right: 8px; /* Add a small indentation to the right of the arrow */
+}
+
+.custom-list li a {
+    color: green; /* Ensuring link is also green */
+    text-decoration: none; /* Ensure links are not underlined */
+}
+
+.http-method {
+  color: rgb(150, 150, 255);
+  font-weight: bold;
+}
+
+pre {
+  background-color: rgb(17, 16, 42);
+  color: rgb(254, 254, 209);
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto; /* Allow horizontal scrolling */
+  white-space: pre-wrap; /* Wrap code lines */
+  position: relative;
+  margin-bottom: 8px;
+}
+
+pre::after {
+  content: '';
+  display: block;
+  height: 8px;
+  background-color: grey;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #5803a3;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.back-to-top:hover {
+  background-color: #c53cff;
+}
+
+.back-to-top::before {
+  content: '\2191'; /* Unicode for the upward arrow */
+  font-size: 24px;
+  color: white;
+}
+
+.integration-tool {
+  color: rgb(72, 15, 141);
+  font-size: 1.1em;
+  font-weight: bold;
+}
