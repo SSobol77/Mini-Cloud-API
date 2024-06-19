@@ -1,6 +1,6 @@
 const express = require("express");
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
 const hbs = require("hbs");
 
 const app = express();
@@ -33,12 +33,6 @@ app.use((req, res, next) => {
 app.set("view engine", "hbs");
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(path.join(__dirname, "views/partial"));
-hbs.registerHelper('times', function(n, block) {
-    let accum = '';
-    for(let i = 0; i < n; ++i)
-        accum += block.fn(i);
-    return accum;
-});
 
 // Web Routes
 const storageRoutes = require('./routes/storage');
