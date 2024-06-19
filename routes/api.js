@@ -1,169 +1,162 @@
 const express = require('express');
+const router = express.Router();
 const path = require('path');
 const fs = require('fs');
-const multer = require('multer');
-const router = express.Router();
 
-// Middleware for file upload
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '..', 'cloud')); // Directory for saving files
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname); // Save files under their original names
-    }
-});
-const upload = multer({ storage: storage });
+const dataJsonsPath = path.join(__dirname, '..', 'datajsons');
+const cloudPath = path.join(__dirname, '..', 'cloud');
+const filesDataPath = path.join(__dirname, '..', 'filesData.json');
 
-// Function to load data from the file
-function loadFileData() {
+// Helper function to read JSON files
+const readJSONFile = (filePath) => {
     try {
-        return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'filesData.json'), 'utf8'));
+        return JSON.parse(fs.readFileSync(filePath, 'utf8'));
     } catch (error) {
-        console.error("Failed to read file data:", error);
+        console.error(`Error reading file from disk: ${error}`);
         return [];
     }
-}
+};
 
-// Function to save data to the file
-function saveFileData(data) {
-    fs.writeFileSync(path.join(__dirname, '..', 'filesData.json'), JSON.stringify(data, null, 2), 'utf8');
-}
-
-// API Routes
+// Helper function to write JSON files
+const writeJSONFile = (filePath, data) => {
+    try {
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
+    } catch (error) {
+        console.error(`Error writing file to disk: ${error}`);
+    }
+};
 
 // Get list of files
 router.get('/files', (req, res) => {
-    const filesData = loadFileData();
+    const filesData = readJSONFile(filesDataPath);
     res.json(filesData);
 });
 
 // Upload file
-router.post('/upload', upload.single('filedata'), (req, res) => {
-    const filedata = req.file;
-    const selectedTheme = req.body.theme;
-    const themeFilePath = path.join(__dirname, '..', 'datajsons', `${selectedTheme}.json`);
+router.post('/upload', (req, res) => {
+    const multer = require('multer');
+    const upload = multer({ dest: cloudPath }).single('filedata');
 
-    if (!filedata) {
-        return res.status(400).json({ success: false, message: 'File not selected.' });
-    }
+    upload(req, res, (err) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: 'File upload failed', error: err.message });
+        }
 
-    const filesData = loadFileData();
-    const themeFilesData = JSON.parse(fs.readFileSync(themeFilePath, 'utf8') || '[]');
-    const fileExists = filesData.some(f => f.filename === filedata.originalname);
+        const file = req.file;
+        const theme = req.body.theme;
 
-    if (fileExists) {
-        return res.status(409).json({ success: false, message: `A file with the name "${filedata.originalname}" already exists. Please rename your file and try again.` });
-    }
+        if (!file) {
+            return res.status(400).json({ success: false, message: 'No file uploaded' });
+        }
 
-    const newFile = {
-        filename: filedata.originalname,
-        size: filedata.size,
-        time: new Date().toLocaleTimeString(),
-        date: new Date().toLocaleDateString(),
-        theme: selectedTheme
-    };
+        const filesData = readJSONFile(filesDataPath);
+        const themeDataPath = path.join(dataJsonsPath, `${theme}.json`);
+        const themeData = readJSONFile(themeDataPath);
 
-    filesData.push(newFile);
-    themeFilesData.push(newFile);
-    saveFileData(filesData);
-    fs.writeFileSync(themeFilePath, JSON.stringify(themeFilesData, null, 2), 'utf8');
+        const fileData = {
+            filename: file.originalname,
+            size: file.size,
+            time: new Date().toLocaleTimeString(),
+            date: new Date().toLocaleDateString(),
+            theme: theme
+        };
 
-    res.json({ success: true, message: 'File successfully uploaded!', file: newFile });
+        filesData.push(fileData);
+        themeData.push(fileData);
+
+        writeJSONFile(filesDataPath, filesData);
+        writeJSONFile(themeDataPath, themeData);
+
+        res.json({ success: true, message: 'File uploaded successfully', file: fileData });
+    });
+});
+
+// Download file
+router.get('/download/:filename', (req, res) => {
+    const filename = req.params.filename;
+    const filePath = path.join(cloudPath, filename);
+
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+        if (err) {
+            return res.status(404).json({ success: false, message: 'File not found' });
+        }
+
+        res.download(filePath);
+    });
 });
 
 // Delete file
 router.delete('/delete/:filename', (req, res) => {
     const filename = req.params.filename;
-    let filesData = loadFileData();
-
+    const filesData = readJSONFile(filesDataPath);
     const fileIndex = filesData.findIndex(file => file.filename === filename);
 
-    if (fileIndex !== -1) {
-        const fileToDelete = filesData[fileIndex];
-        const filePath = path.join(__dirname, '..', 'cloud', filename);
-        const themeFilePath = path.join(__dirname, '..', 'datajsons', `${fileToDelete.theme}.json`);
-
-        fs.unlink(filePath, err => {
-            if (err) {
-                console.error("Error when deleting file:", err);
-                return res.status(500).send({ success: false, message: 'Server error when trying to delete a file' });
-            }
-
-            filesData.splice(fileIndex, 1);
-            saveFileData(filesData);
-
-            let themeData = JSON.parse(fs.readFileSync(themeFilePath, 'utf8'));
-            themeData = themeData.filter(item => item.filename !== filename);
-            fs.writeFileSync(themeFilePath, JSON.stringify(themeData, null, 2), 'utf8');
-
-            res.json({ success: true, message: 'File deleted successfully' });
-        });
-    } else {
-        res.status(404).send({ success: false, message: 'File not found' });
+    if (fileIndex === -1) {
+        return res.status(404).json({ success: false, message: 'File not found' });
     }
+
+    const fileData = filesData[fileIndex];
+    const filePath = path.join(cloudPath, filename);
+    const themeDataPath = path.join(dataJsonsPath, `${fileData.theme}.json`);
+    const themeData = readJSONFile(themeDataPath);
+
+    fs.unlink(filePath, (err) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: 'File deletion failed', error: err.message });
+        }
+
+        filesData.splice(fileIndex, 1);
+        const updatedThemeData = themeData.filter(file => file.filename !== filename);
+
+        writeJSONFile(filesDataPath, filesData);
+        writeJSONFile(themeDataPath, updatedThemeData);
+
+        res.json({ success: true, message: 'File deleted successfully' });
+    });
 });
 
 // Get list of themes
 router.get('/themes', (req, res) => {
-    const themesDir = path.join(__dirname, '..', 'datajsons');
-    const themes = fs.readdirSync(themesDir).map(file => ({
-        name: file.split('.')[0],
-        path: path.join(themesDir, file)
-    }));
-    res.json(themes);
-});
-
-// Create a new theme
-router.post('/themes', (req, res) => {
-    const themeName = req.body.themeName.trim();
-    const themeType = req.body.themeType.trim();
-
-    if (!themeName || themeName.length < 3) {
-        return res.status(400).json({ success: false, message: 'Invalid theme name. Name must be at least 3 characters long.' });
-    }
-
-    if (!/^[a-zA-Z0-9_-]+$/.test(themeName)) {
-        return res.status(400).json({ success: false, message: 'Theme name can only contain letters, numbers, underscores, and dashes.' });
-    }
-
-    if (themeName.length > 50) {
-        return res.status(400).json({ success: false, message: 'Theme name too long. A maximum of 50 characters is allowed.' });
-    }
-
-    const filePath = path.join(__dirname, '..', 'datajsons', `${themeName}-${themeType}.json`);
-
-    try {
-        if (!fs.existsSync(filePath)) {
-            fs.writeFileSync(filePath, JSON.stringify([]));
-            res.json({ success: true, message: 'Theme successfully created!' });
-        } else {
-            res.status(409).json({ success: false, message: 'Theme already exists.' });
+    fs.readdir(dataJsonsPath, (err, files) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: 'Error reading themes', error: err.message });
         }
-    } catch (error) {
-        console.error("Error processing request:", error);
-        res.status(500).send('Server error');
-    }
+
+        const themes = files.map(file => {
+            const parts = file.split('-');
+            return {
+                name: parts[0],
+                type: parts[1].split('.')[0]
+            };
+        });
+        res.json({ success: true, themes });
+    });
 });
 
-// Delete a theme
+// Create new theme
+router.post('/themes', (req, res) => {
+    const { themeName, themeType } = req.body;
+    const filePath = path.join(dataJsonsPath, `${themeName}-${themeType}.json`);
+
+    fs.writeFile(filePath, JSON.stringify([]), (err) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: 'Theme creation failed' });
+        }
+        res.json({ success: true, message: 'Theme created successfully' });
+    });
+});
+
+// Delete theme
 router.delete('/themes/:themeName', (req, res) => {
     const themeName = req.params.themeName;
-    const themesDir = path.join(__dirname, '..', 'datajsons');
-    const themeFile = `${themeName}.json`;
-    const themeFilePath = path.join(themesDir, themeFile);
+    const filePath = path.join(dataJsonsPath, `${themeName}.json`);
 
-    try {
-        if (fs.existsSync(themeFilePath)) {
-            fs.unlinkSync(themeFilePath);
-            res.json({ success: true, message: 'Theme successfully deleted!' });
-        } else {
-            res.status(404).json({ success: false, message: 'Theme not found' });
+    fs.unlink(filePath, (err) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: 'Theme deletion failed' });
         }
-    } catch (error) {
-        console.error("Error deleting theme:", error);
-        res.status(500).send('Server error');
-    }
+        res.json({ success: true, message: 'Theme deleted successfully' });
+    });
 });
 
 module.exports = router;

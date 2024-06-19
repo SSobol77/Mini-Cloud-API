@@ -28,7 +28,7 @@ router.get('/config', function(req, res) {
 });
 
 // Route for creating new themes
-router.post('/config', function(req, res) {
+router.post('/api/themes', function(req, res) {
     let themeName = req.body.themeName.trim();
     const themeType = req.body.themeType.trim();
 
@@ -63,7 +63,7 @@ router.post('/config', function(req, res) {
 });
 
 // Route for deleting themes
-router.post('/delete-theme/:themeName', function(req, res) {
+router.delete('/api/themes/:themeName', function(req, res) {
     const themeName = req.params.themeName;
     const themeFiles = getThemesList().filter(theme => theme.name === themeName);
     

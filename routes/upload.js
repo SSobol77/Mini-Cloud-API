@@ -76,7 +76,7 @@ router.get("/upload", function (req, res) {
 });
 
 // Route for file upload
-router.post("/upload", upload.single('filedata'), function (req, res) {
+router.post("/api/upload", upload.single('filedata'), function (req, res) {
     const filedata = req.file;
     const selectedTheme = req.body.theme;
     const themeFilePath = path.join(__dirname, '..', 'datajsons', `${selectedTheme}.json`);

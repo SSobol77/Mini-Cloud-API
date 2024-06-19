@@ -27,7 +27,7 @@ router.get("/", function (req, res) {
 });
 
 // Route for deleting a file
-router.post('/delete/:filename', function(req, res) {
+router.delete('/api/delete/:filename', function(req, res) {
     const filename = req.params.filename;
     let filesData = loadFileData();
     
@@ -59,7 +59,7 @@ router.post('/delete/:filename', function(req, res) {
 });
 
 // Route for downloading a file
-router.get('/download/:filename', function(req, res) {
+router.get('/api/download/:filename', function(req, res) {
     const filename = req.params.filename;
     const filePath = path.join(__dirname, '..', 'cloud', filename);
 
@@ -72,7 +72,7 @@ router.get('/download/:filename', function(req, res) {
 });
 
 // Route for opening a file
-router.get('/open/:filename', function(req, res) {
+router.get('/api/open/:filename', function(req, res) {
     const filename = req.params.filename;
     const filePath = path.join(__dirname, '..', 'cloud', filename);
 
