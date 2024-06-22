@@ -3,40 +3,41 @@ document.getElementById('themeForm').addEventListener('submit', function(event) 
     event.preventDefault();
     const themeName = document.getElementById('themeName').value;
     const themeType = document.getElementById('themeType').value;
-
-    fetch('/api/themes', {
+    fetch('/config', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ themeName, themeType })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => { throw new Error(text); });
+        }
+        return response.json();
+    })
     .then(data => {
         const messageBox = document.getElementById('messageBox');
         if (data.success) {
             messageBox.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-            const newListElement = document.createElement('li');
-            newListElement.className = 'list-group-item d-flex justify-content-between align-items-center';
-            newListElement.innerHTML = `
+            const newListElement = `<li class="list-group-item d-flex justify-content-between align-items-center">
                 ${themeName}-${themeType}
                 <button class="btn btn-danger btn-sm" onclick="deleteTheme('${themeName}-${themeType}')">Delete</button>
-            `;
-            document.getElementById('themesList').appendChild(newListElement);
+            </li>`;
+            document.getElementById('themesList').innerHTML += newListElement;
         } else {
             messageBox.innerHTML = `<div class="alert alert-warning">${data.message}</div>`;
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        const messageBox = document.getElementById('messageBox');
-        messageBox.innerHTML = `<div class="alert alert-danger">An error occurred while creating the theme.</div>`;
+        document.getElementById('messageBox').innerHTML = `<div class="alert alert-danger">An error occurred while creating the theme.</div>`;
     });
 });
 
 function deleteTheme(themeName) {
-    fetch(`/api/themes/${themeName}`, {
-        method: 'DELETE'
+    fetch(`/delete-theme/${themeName}`, {
+        method: 'POST'
     })
     .then(response => response.json())
     .then(data => {

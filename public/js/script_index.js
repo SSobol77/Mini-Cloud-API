@@ -1,26 +1,33 @@
-// Script for index page
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.delete-button').forEach(button => {
-        button.addEventListener('click', function() {
-            const filename = this.dataset.filename;
-            const row = this.closest('tr');
+document.querySelectorAll('.delete-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const theme = this.getAttribute('action').split('/').pop();
+        const row = this.closest('tr');
 
-            fetch(`/api/delete/${filename}`, {
-                method: 'DELETE'
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    row.remove(); // Remove the row from the table
-                    alert('The file was successfully deleted'); // Use more complex notifications here if necessary.
-                } else {
-                    throw new Error(data.message);
-                }
-            })
-            .catch(error => {
-                console.error(error);
-                alert(error.message); // Display errors in a 'friendly manner'
-            });
+        fetch(`/delete-theme/${theme}`, {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                row.remove(); // Удаление строки из таблицы
+                alert('The theme and its files were successfully deleted'); // Уведомление об успешном удалении
+                
+                // Обновление списка файлов
+                const fileTables = document.querySelectorAll('h5');
+                fileTables.forEach(table => {
+                    if (table.textContent === theme) {
+                        table.nextElementSibling.remove(); // Удаление таблицы файлов
+                        table.remove(); // Удаление заголовка таблицы файлов
+                    }
+                });
+            } else {
+                throw new Error(data.message);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert(error.message); // Отображение ошибок
         });
     });
 });
