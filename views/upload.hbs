@@ -1,11 +1,9 @@
 {{!-- upload.hbs --}}
-{{> menu}}
+{{!< layout}}
 
 <div class="text-center mb-4">
-    <p>&nbsp;</p>
-    <img src="logo.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" class="img-fluid rounded-circle" width="170" height="170">
-    <p></p>
     <h3><strong>Mini-Cloud Upload</strong></h3>
+    <h3>&nbsp;</h3>
 </div>
 <div class="container mt-4">
     <h4>Upload files</h4>
@@ -15,7 +13,7 @@
         </div>
     {{/if}}
     <div class="my-3">
-        <form id="uploadForm" action="/api/upload" method="post" enctype="multipart/form-data">
+        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="themeSelect" class="form-label">Select a Topic for the file:</label>
                 <select class="form-control" id="themeSelect" name="theme" required>
@@ -34,6 +32,5 @@
             <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
-<script src="/js/script_upload.js"></script>
 </div>
-
+<script src="/js/script_upload.js"></script>

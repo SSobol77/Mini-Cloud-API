@@ -1,23 +1,19 @@
 {{!-- config.hbs --}}
-{{> menu}}
+{{!< layout}}
 
 <div class="text-center mb-4">
-    <p>&nbsp;</p>
-    <img src="logo.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" class="img-fluid rounded-circle" width="170" height="170">
-    <p> </p>
-    <h3><strong>Mini-Cloud Configuration</strong></h3>
+        <h3><strong>Configuration</strong></h3>
+        <h3>&nbsp;</h3>
 </div>
 <div class="container mt-4">
-        &nbsp;
-    <div>
     <h4>Create New Topic</h4>
     <form id="themeForm">
         <div class="mb-3">
-            <label for="themeName" class="form-label">Topic Name:</label> 
+            <label for="themeName" class="form-label">Topic Name:</label>
             <input type="text" class="form-control" id="themeName" name="themeName" required>
         </div>
         <div class="mb-3">
-            <label for="themeType" class="form-label">Select File Type:</label> 
+            <label for="themeType" class="form-label">Select File Type:</label>
             <select class="form-select" id="themeType" name="themeType">
                 <option value="video">Video</option>
                 <option value="audio">Audio</option>
@@ -26,7 +22,7 @@
                 <option value="other">Other</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Create Topic</button> 
+        <button type="submit" class="btn btn-primary">Create Topic</button>
     </form>
     <div id="messageBox" class="mt-3"></div>
 
@@ -40,10 +36,6 @@
         {{/each}}
     </ul>
 </div>
-</div>
 <script src="/js/script_config.js"></script>
-<script>
-    document.getElementById('back-to-top').addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-</script>
+</div>
+

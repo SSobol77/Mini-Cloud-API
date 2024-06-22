@@ -1,17 +1,54 @@
 {{!-- index.hbs --}}
-{{> menu}}
+{{!< layout}}
 
 <div class="text-center mb-4">
-    <p>&nbsp;</p>
-    <img src="logo.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" class="img-fluid rounded-circle" width="170" height="170">
-    <p></p>
     <h3><strong>Mini-Cloud Storage</strong></h3>
+    <h3>&nbsp;</h3>
+    <h3>&nbsp;</h3>
 </div>
 <div class="container mt-4">
-    <h4>Files in the cloud stored</h4>
-    <div>
-        {{description}}
-    </div>
+    <h4><strong>Topics in the cloud stored:</strong></h4>
+    <h3>&nbsp;</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Topic</th>
+                <th>Total Size</th>
+                <th>Total Files</th>
+                <th>Time</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each topics}}
+            <tr>
+                <td>{{this.number}}</td>
+                <td>{{this.theme}}</td>
+                <td>{{this.tsize}} bytes</td>
+                <td>{{this.totalFiles}}</td>
+                <td>{{this.time}}</td>
+                <td>{{this.date}}</td>
+                <td>
+                    <form action="/delete-theme/{{this.theme}}" method="POST" class="delete-form">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="7">No topics found.</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+<h3>&nbsp;</h3>
+<h3>&nbsp;</h3>
+    <h4><strong>Files in the cloud stored:</strong></h4>
+    {{#each files}}
+    <h3>&nbsp;</h3>
+    <h5><b>{{this.name}}</b></h5>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -23,31 +60,30 @@
                 <th>Action</th>
             </tr>
         </thead>
+        <h6>&nbsp;</h6>
         <tbody>
-            {{#each filesData}}
-            <tr id="file-{{@index}}">
+            {{#each this.data}}
+            <tr>
                 <td>{{@index}}</td>
-                <td>{{filename}}</td>
-                <td>{{size}} bytes</td>
-                <td>{{time}}</td>
-                <td>{{date}}</td>
+                <td>{{this.filename}}</td>
+                <td>{{this.size}} bytes</td>
+                <td>{{this.time}}</td>
+                <td>{{this.date}}</td>
                 <td>
-                    <a href="/api/download/{{filename}}" class="btn btn-primary">Download</a>
-                    <a href="/api/open/{{filename}}" target="_blank" class="btn btn-success">Open</a>
-                    <button class="btn btn-danger delete-button" data-filename="{{filename}}">Delete</button>
+                    <a href="/download/{{this.filename}}" class="btn btn-primary">Download</a>
+                    <a href="/open/{{this.filename}}" target="_blank" class="btn btn-success">Open</a>
+                    <form action="/delete/{{this.filename}}" method="POST" class="delete-form">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
             {{else}}
             <tr>
-                <td colspan="6">No files found.</td>
+                <td colspan="6">No files found for this topic.</td>
             </tr>
             {{/each}}
         </tbody>
     </table>
+    {{/each}}
 </div>
 <script src="/js/script_index.js"></script>
-<script>
-    document.getElementById('back-to-top').addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-</script>
