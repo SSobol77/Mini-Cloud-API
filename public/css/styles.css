@@ -162,6 +162,7 @@ pre::after {
 }
 
 /* footer */
+
 .footer {
     background-color: #343a40;
     color: #fff;
@@ -208,4 +209,13 @@ pre::after {
     content: '\2191'; /* Unicode for the upward arrow */
     font-size: 24px;
     color: white;
+}
+
+.social-icons a {
+    color: #6c757d; /* Gray color for icons */
+    font-size: 1.5rem; /* Size of icons */
+}
+
+.social-icons a:hover {
+    color: #ffffff; /* White color on hover */
 }
