@@ -160,3 +160,52 @@ pre::after {
     width: 0%; /* Initial state without padding */
     position: absolute;
 }
+
+/* footer */
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 1rem 0;
+    width: 100%;
+}
+
+.footer a {
+    color: #ffc107;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.flex-grow-1 {
+    margin-bottom: 50px; /* Space between content and footer */
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #276bff;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: none; /* Initially hidden */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.back-to-top:hover {
+    background-color: #c53cff;
+}
+
+.back-to-top::before {
+    content: '\2191'; /* Unicode for the upward arrow */
+    font-size: 24px;
+    color: white;
+}
