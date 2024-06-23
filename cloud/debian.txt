@@ -5,8 +5,9 @@ Written by Jean-Pierre Giraud
 Translations: ar ca es fr hi-IN pl pt sv vi zh-CN
 The following contributors got their Debian Developer accounts in the last two months:
 
-Patrick Winnertz (winnie)
-Fabian Gruenbichler (fabiang)
+```
+***
 The following contributors were added as Debian Maintainers in the last two months:
-
+***
+```
 Congratulations!
