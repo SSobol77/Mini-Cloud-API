@@ -1,47 +1,45 @@
 <img src="https://github.com/SSobol77/Mini-Cloud/blob/main/public/logo.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" width="170" height="170">
 
-# Mini-Cloud API
+# Mini-Cloud API Documentation
 
 **Project Description:**
-MiniCloud is a lightweight web server for hosting and managing files. It is implemented using Node.js, with Express.js and the Handlebars template engine for rendering pages. Key functionalities include uploading, storing, downloading, and deleting files via a web interface.
+Mini-Cloud is a lightweight web server for hosting and managing files. It is implemented using Node.js, with Express.js and the Handlebars template engine for rendering pages. Key functionalities include uploading, storing, downloading, and deleting files via a web interface. This project also supports file encryption, user authentication, and versioning to provide a comprehensive solution for file management.
+
 
 #### Storage:
-<img src="https://github.com/SSobol77/Mini-Cloud/blob/main/img/mc_storage.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" width="470" height="270">
+<img src="https://github.com/SSobol77/Mini-Cloud/blob/main/img/mc_storage.png" alt="Mini-Cloud Storage" title="Mini-Cloud Storage" width="470" height="270">
 
 #### Upload:
-<img src="https://github.com/SSobol77/Mini-Cloud/blob/main/img/mc_upload.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" width="470" height="270">
+<img src="https://github.com/SSobol77/Mini-Cloud/blob/main/img/mc_upload.png" alt="Mini-Cloud Upload" title="Mini-Cloud Upload" width="470" height="270">
 
 #### Docs:
-<img src="https://github.com/SSobol77/Mini-Cloud/blob/main/img/mc_docs.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" width="470" height="270">
+<img src="https://github.com/SSobol77/Mini-Cloud/blob/main/img/mc_docs.png" alt="Mini-Cloud Docs" title="Mini-Cloud Docs" width="470" height="270">
 
 #### Config:
-<img src="https://github.com/SSobol77/Mini-Cloud/blob/main/img/mc_config.png" alt="Logo of Mini-Cloud" title="Mini-Cloud" width="470" height="270">
+<img src="https://github.com/SSobol77/Mini-Cloud/blob/main/img/mc_config.png" alt="Mini-Cloud Config" title="Mini-Cloud Config" width="470" height="270">
 
+## Detailed Project Structure and Description
 
-### Mini-Cloud API: Detailed Project Structure and Description
-
-#### Project Structure:
+### Project Structure
 ```
 MINI-CLOUD-API
 |
 |--/cloud
 |
 |--/datajsons
-|   |
-|   |--newtopic1-typefile.json (newtopic - name create from user; typefile = [video, audio, images, documents, other])
-|   |--...
+|   |--allTopics.json
+|   |--<theme_name>-<file_type>.json (e.g., newtopic1-video.json)
 |
 |--/node_modules
 |
 |--/public
-|   |
 |   |--favicon.ico    
 |   |--logo.png
-|   |
 |   |--/css
+|   |   |--style_menu.css
+|   |   |--style_docs.css
+|   |   |--style_upload.css
 |   |   |--styles.css
-|   |   |--styles_docs.css
-|   |
 |   |--/js
 |       |--script_config.js
 |       |--script_index.js
@@ -56,31 +54,62 @@ MINI-CLOUD-API
 |   |--upload.js
 |       
 |--/views
-|   |
 |   |--/partial
 |   |   |--menu.hbs
-|   |
 |   |--config.hbs
 |   |--docs.hbs
 |   |--index.hbs
 |   |--upload.hbs
+|   |--layout.hbs
+|
+|--/middlewares
+|   |--auth.js (Middleware for authentication and authorization)
+|
+|--/utils
+|   |--encryption.js (Utility functions for file encryption and decryption)
+|
+|--/services
+|   |--versioning.js (Services related to file versioning and backup)
+|
+|--/search
+|   |--search.js (Functions for search and filtering)
+|
+|--/collaboration
+|   |--sharing.js (Functions for file sharing and collaboration)
+|
+|--/notifications
+|   |--notifications.js (Functions for sending notifications)
+|
+|--/mobile
+|   |--app.js (Code and resources for mobile app support)
+|
+|--/performance
+|   |--performance.js (Functions for performance optimization)
+|
+|--/cloud
+|   |--cloud.js (Code and resources for cloud-related features)
+|
+|--/integrations
+|   |--third_party.js (Integration code for third-party services)
 |
 |--app.js
 |--package-lock.json
 |--package.json
-|--readme.md
-|--filesData.json (contains a list of downloaded files)
+|--README.md
+|--filesData.json
 ```
 
-#### Directory and File Descriptions:
+### Directory and File Descriptions
 
 - `/cloud`: Directory for storing uploaded files.
-- `/datajsons`: Directory for storing JSON files corresponding to new topics created by the user. These files are named using the format `newtopic-typefile.json`, where `newtopic` is a user-created name, and `typefile` indicates the type of file (video, audio, images, documents, other).
+- `/datajsons`: Directory for storing JSON files corresponding to new topics created by the user. These files are named using the format `<theme_name>-<file_type>.json`, where `<theme_name>` is a user-created name, and `<file_type>` indicates the type of file (video, audio, images, documents, other).
 - `/node_modules`: Contains Node.js modules and dependencies.
 - `/public`: Contains static files such as images, CSS, and JavaScript.
   - `/css`: Directory for CSS stylesheets.
+    - `style_menu.css`: Stylesheet for the navigation menu.
+    - `style_docs.css`: Stylesheet for the documentation page.
+    - `style_upload.css`: Stylesheet for the upload page.
     - `styles.css`: Main stylesheet.
-    - `styles_docs.css`: Stylesheet specifically for the documents page.
   - `/js`: Directory for JavaScript files.
     - `script_config.js`: JavaScript for configuration-related functionality.
     - `script_index.js`: JavaScript for the main index page.
@@ -101,12 +130,33 @@ MINI-CLOUD-API
   - `docs.hbs`: Template for the documentation page.
   - `index.hbs`: Template for the main index page.
   - `upload.hbs`: Template for the file upload page.
+  - `layout.hbs`: Main layout template used across all pages.
+- `/middlewares`: Contains middleware functions.
+  - `auth.js`: Middleware for authentication and authorization.
+- `/utils`: Contains utility functions.
+  - `encryption.js`: Utility functions for file encryption and decryption.
+- `/services`: Contains services related to file versioning and backup.
+  - `versioning.js`: Functions for managing file versions and backups.
+- `/search`: Contains search and filtering functions.
+  - `search.js`: Functions for enabling search and filtering capabilities.
+- `/collaboration`: Contains functions for file sharing and collaboration.
+  - `sharing.js`: Functions for enabling file sharing and collaboration features.
+- `/notifications`: Contains functions for sending notifications.
+  - `notifications.js`: Functions for sending notifications to users.
+- `/mobile`: Contains code and resources for mobile app support.
+  - `app.js`: Code for developing mobile apps for iOS and Android platforms.
+- `/performance`: Contains performance optimization functions.
+  - `performance.js`: Functions for implementing caching, compression, and other performance enhancement techniques.
+- `/cloud`: Contains cloud-related code and resources.
+  - `cloud.js`: Code for implementing load balancing, auto-scaling, and other cloud-native features.
+- `/integrations`: Contains integration code for third-party services.
+  - `third_party.js`: Code for integrating Mini-Cloud API with services like Dropbox, Box, or OneDrive.
 - `app.js`: Main server file that initializes and runs the Node.js application.
 - `package-lock.json` & `package.json`: Configuration files that list project dependencies and metadata.
-- `readme.md`: Project description and documentation.
+- `README.md`: Project description and documentation.
 - `filesData.json`: File containing data about uploaded files.
 
-#### Key Features:
+### Key Features
 
 1. **File Upload**:
    - Files are uploaded to the `/cloud` directory using Multer and are saved under their original names.
@@ -119,70 +169,44 @@ MINI-CLOUD-API
    
 4. **Security**:
    - Content Security Policy that restricts the sources from which scripts, styles, and other resources can be loaded.
+   - Middleware for user authentication and authorization.
    
-5. **Server Startup**:
-   - The server runs on port 3000 and is available locally for development and testing functionalities.
+5. **File Encryption**:
+   - Utility functions for encrypting and decrypting files before storing or retrieving them.
+   
+6. **File Versioning and Backup**:
+   - Services for managing file versions and backups.
+   
+7. **Search and Filtering**:
+   - Functions for enabling search and filtering capabilities for files and themes.
+   
+8. **Collaboration and Sharing**:
+   - Functions for enabling file sharing and collaboration features.
+   
+9. **Notifications**:
+   - Functions for sending notifications to users about file uploads, downloads, deletions, or other events.
+   
+10. **Mobile App Support**:
+    - Code for developing mobile apps for iOS and Android platforms.
+   
+11. **Performance Optimization**:
+    - Functions for implementing caching, compression, and other performance enhancement techniques.
+   
+12. **Cloud Features**:
+    - Code for implementing load balancing, auto-scaling, and other cloud-native features.
+   
+13. **Third-Party Integrations**:
+    - Code for integrating Mini-Cloud API with services like Dropbox, Box, or OneDrive.
 
-#### Technologies:
+### Technologies
 
 - **Node.js and Express.js**: For server logic and routing.
 - **Handlebars**: For server-side page rendering.
 - **Bootstrap**: For styling the interface and ensuring responsiveness.
 - **Multer**: For handling files uploaded to the server.
-- **JSON**: For storing file data and topics.
+- **
 
-This project provides a foundation for more complex content management systems or personal cloud solutions that support a broader range of features and a high level of customization.
-
-
-# Mini-Cloud Documentation
-
-## Learn how to effectively use Mini Cloud
-
-### Table of Contents
-
-- [Learn how to effectively use Mini Cloud](#learn-how-to-effectively-use-mini-cloud)
-- [Introduction to Mini-Cloud API](#introduction-to-mini-cloud-api)
-- [Installation Instructions](#installation-instructions)
-- [API Usage Instructions](#api-usage-instructions)
-- [Configuring Mini-Cloud API](#configuring-mini-cloud-api)
-- [Utilizing Mini-Cloud API](#utilizing-mini-cloud-api)
-- [How-To Guides](#how-to-guides)
-- [Integration Examples](#integration-examples)
-  - [CI/CD Tools (Continuous Integration/Continuous Deployment)](#cicd-tools-continuous-integrationcontinuous-deployment)
-    - [Jenkins Integration](#jenkins-integration)
-    - [GitLab CI/CD Integration](#gitlab-cicd-integration)
-  - [Monitoring and Alerting](#monitoring-and-alerting)
-    - [Prometheus Integration (Python)](#prometheus-integration-python)
-    - [Nagios Integration](#nagios-integration)
-  - [Cloud Services](#cloud-services)
-    - [AWS S3 Sync (Node.js)](#aws-s3-sync-nodejs)
-    - [Google Cloud Storage Integration (Python)](#google-cloud-storage-integration-python)
-  - [Project Management Tools](#project-management-tools)
-    - [JIRA Integration](#jira-integration)
-    - [Trello Integration](#trello-integration)
-  - [Content Management Systems (CMS)](#content-management-systems-cms)
-    - [WordPress Integration](#wordpress-integration)
-    - [Drupal Integration](#drupal-integration)
-  - [Data Tools](#data-tools)
-    - [Jupyter Notebook Integration (Python)](#jupyter-notebook-integration-python)
-    - [Apache Kafka Integration](#apache-kafka-integration)
-  - [Automation Tools](#automation-tools)
-    - [Ansible Integration](#ansible-integration)
-    - [Terraform Integration](#terraform-integration)
-
-## Introduction to Mini-Cloud API
-
-Mini-Cloud is a lightweight web server designed to host and manage files. It provides functionalities for uploading, storing, downloading, and deleting files through a user-friendly web interface. Users can organize their files into themes, making file management more intuitive and efficient.
-
-Key features of Mini-Cloud include:
-
-- **File Upload:** Upload files through an easy-to-use web interface.
-- **File Storage:** Store files securely on the server.
-- **File Download:** Download files when needed.
-- **File Deletion:** Delete files that are no longer needed.
-- **Theme Management:** Organize files into user-defined themes for better management.
-
-Mini-Cloud is implemented using Node.js, with Express.js for the server and Handlebars for rendering pages. This makes it a flexible and scalable solution for small to medium-sized file hosting needs.
+JSON**: For storing file data and topics.
 
 ## Installation Instructions
 
@@ -418,9 +442,7 @@ files = response.json()
 print(files)
 
 # Upload a file
-files
-
- = {'filedata': open('path/to/your/file.txt', 'rb')}
+files = {'filedata': open('path/to/your/file.txt', 'rb')}
 data = {'theme': 'documents'}
 response = requests.post('http://localhost:3000/api/upload', files=files, data=data)
 print(response.json())
@@ -518,7 +540,9 @@ with open('file.txt', 'wb') as file:
     file.write(response.content)
 
 # Upload the file to GCS
-blob = bucket.blob('file.txt')
+blob = bucket.blob('file.txt
+
+')
 blob.upload_from_filename('file.txt')
 
 print(f'File uploaded to {bucket_name}.')
@@ -739,8 +763,6 @@ Ansible is a task automation tool that can be used for configuration management 
   hosts: localhost
   tasks:
     - name: Download configuration file from Mini-Cloud
-
-
       get_url:
         url: http://localhost:3000/api/download/config.yaml
         dest: /path/to/destination/config.yaml
@@ -826,7 +848,9 @@ This Ansible playbook downloads a configuration file from Mini-Cloud and places 
           theme: "state-files"
 ```
 
-This Ansible playbook uploads a Terraform state file to Mini-Cloud, allowing you to easily manage state files when using Terraform for infrastructure management.
+This Ansible playbook uploads a Terraform state file to Mini-Cloud, allowing you to easily manage state files when using Terraform
+
+ for infrastructure management.
 
 These examples demonstrate how to use Mini-Cloud API for integration with Ansible, automating tasks for uploading and downloading configuration and state files.
 
@@ -855,4 +879,20 @@ resource "null_resource" "upload_state" {
 
 This Terraform configuration uses the `http` provider to download a configuration file from Mini-Cloud and store it locally. It also includes a `null_resource` to upload a Terraform state file to Mini-Cloud using a local-exec provisioner.
 
+## Further Enhancements
+
+Given the project structure, here are some suggestions on how to extend and improve your Mini-Cloud API project:
+
+1. **User Authentication and Authorization**: You can create a new folder called `/middlewares` to store authentication and authorization middleware functions. You can then use these middlewares in your route handlers in the `/routes` folder to secure access to files and themes.
+2. **File Encryption**: You can create a new folder called `/utils` to store utility functions, including file encryption and decryption functions. You can then use these functions in your route handlers in the `/routes` folder to encrypt and decrypt files before storing or retrieving them.
+3. **Versioning and Backup**: You can create a new folder called `/services` to store services related to file versioning and backup. You can then use these services in your route handlers in the `/routes` folder to manage file versions and backups.
+4. **Search and Filtering**: You can create a new folder called `/search` to store search and filtering functions. You can then use these functions in your route handlers in the `/routes` folder to enable search and filtering capabilities for files and themes.
+5. **Collaboration and Sharing**: You can create a new folder called `/collaboration` to store collaboration and sharing functions. You can then use these functions in your route handlers in the `/routes` folder to enable file sharing and collaboration features.
+6. **Webhooks and Notifications**: You can create a new folder called `/notifications` to store notification functions. You can then use these functions in your route handlers in the `/routes` folder to send notifications to users about file uploads, downloads, deletions, or other events.
+7. **Mobile App Support**: You can create a new folder called `/mobile` to store mobile app-related code and resources. You can then use this folder to develop mobile apps for iOS and Android platforms.
+8. **Performance Optimization**: You can create a new folder called `/performance` to store performance optimization functions. You can then use these functions in your route handlers in the `/routes` folder to implement caching, compression, and other performance enhancement techniques.
+9. **Scalability and High Availability**: You can create a new folder called `/cloud` to store cloud-related code and resources. You can then use this folder to implement load balancing, auto-scaling, and other cloud-native features to ensure scalability and high availability.
+10. **Integration with Third-Party Services**: You can create a new folder called `/integrations` to store integration code and resources for third-party services. You can then use this folder to integrate Mini-Cloud API with third-party services like Dropbox, Box, or OneDrive.
+
+By following this suggested project structure, you can keep your code organized and maintainable as you add new features and enhancements to your Mini-Cloud API project.
 .
