@@ -9,10 +9,4 @@ Patrick Winnertz (winnie)
 Fabian Gruenbichler (fabiang)
 The following contributors were added as Debian Maintainers in the last two months:
 
-Juri Grabowski
-Tobias Heider
-Jean Charles Delépine
-Guilherme Puida Moreira
-Antoine Le Gonidec
-Arthur Barbosa Diniz
 Congratulations!
